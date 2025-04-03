@@ -159,6 +159,7 @@ test('should keep query arguments when updating settings', async ({
 	).toMatch('/wp-admin/');
 });
 
+<<<<<<< HEAD
 test('should edit a file in the code editor and see changes in the viewport', async ({
 	website,
 	wordpress,
@@ -578,4 +579,17 @@ test.describe('Database panel', () => {
 
 		await newPage.close();
 	});
+});
+
+test('should not load GTM code when VITE_GOOGLE_ANALYTICS_ID is missing', async ({
+	website,
+}) => {
+	await website.goto('./');
+
+	// By default, the VITE_GOOGLE_ANALYTICS_ID is not set, so GTM should not be loaded
+	// Check if GTM script is not present in the head
+	const gtmScript = await website.page
+		.locator('script[src*="googletagmanager.com"]')
+		.count();
+	expect(gtmScript).toBe(0);
 });
