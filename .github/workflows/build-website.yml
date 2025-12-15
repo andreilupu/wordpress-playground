@@ -29,6 +29,8 @@ jobs:
         runs-on: ubuntu-latest
         environment:
             name: playground-wordpress-net-wp-cloud
+        env:
+            VITE_GOOGLE_ANALYTICS_ID: G-SVTNFCP8T7
         steps:
             - uses: actions/checkout@v4
               with:
